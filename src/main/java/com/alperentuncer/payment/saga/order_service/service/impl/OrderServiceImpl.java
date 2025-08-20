@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.alperentuncer.payment.saga.order_service.api.NotFoundException;
 
 import com.alperentuncer.payment.saga.order_service.domain.Order;
 import com.alperentuncer.payment.saga.order_service.domain.OrderItem;
@@ -49,20 +50,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Order getOrder(UUID orderId) {
-        Objects.requireNonNull(orderId, "orderId zorunlu");
-        return orderRepository.findById(orderId)
-                .orElseThrow(() -> new IllegalArgumentException("Sipariş bulunamadı: " + orderId));
-    }
+@Transactional(readOnly = true)
+public Order getOrder(UUID orderId) {
+    Objects.requireNonNull(orderId, "orderId zorunlu");
+    return orderRepository.findById(orderId)
+            .orElseThrow(() -> new NotFoundException("Sipariş bulunamadı: " + orderId));
+}
 
-    @Override
-    public Order cancelOrder(UUID orderId) {
-        Objects.requireNonNull(orderId, "orderId zorunlu");
-        var order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new IllegalArgumentException("Sipariş bulunamadı: " + orderId));
 
-        order.cancel();              // domain kuralı: geçersizse exception fırlatır
-        return orderRepository.save(order); // state değişti, persist et
-    }
+  @Override
+public Order cancelOrder(UUID orderId) {
+    Objects.requireNonNull(orderId, "orderId zorunlu");
+    var order = orderRepository.findById(orderId)
+            .orElseThrow(() -> new NotFoundException("Sipariş bulunamadı: " + orderId));
+
+    order.cancel();
+    return orderRepository.save(order);
+}
 }
