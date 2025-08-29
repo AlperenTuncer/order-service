@@ -148,7 +148,7 @@ Test katmanları:
 ## 📈 Geliştirme Planı
 
 - [x] Order Service (H2 + CRUD)
-- [ ] Stock Service (REST tabanlı prototip)
+- [x] Stock Service (REST tabanlı prototip)
 - [ ] Payment Service (REST tabanlı prototip)
 - [ ] Saga Pattern (RabbitMQ üzerinden event-driven)
 - [ ] Redis (idempotency, cache, kısa süreli state)
