@@ -149,7 +149,7 @@ Test katmanları:
 
 - [x] Order Service (H2 + CRUD)
 - [x] Stock Service (REST tabanlı prototip)
-- [ ] Payment Service (REST tabanlı prototip)
+- [x] Payment Service (REST tabanlı prototip)
 - [ ] Saga Pattern (RabbitMQ üzerinden event-driven)
 - [ ] Redis (idempotency, cache, kısa süreli state)
 - [ ] Spring Cloud (Config Server, Gateway, Circuit Breaker)
